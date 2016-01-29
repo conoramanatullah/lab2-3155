@@ -7,6 +7,8 @@
 
 // Imports the parse function from jsy.lab1.Parser
 import jsy.lab2.Parser.parse
+parse("console.log(47)")
+
 
 // Imports all of the functions form jsy.student.Lab2 (your implementations in Lab1.scala)
 import jsy.student.Lab2._
