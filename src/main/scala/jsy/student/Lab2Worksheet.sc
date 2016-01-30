@@ -7,6 +7,7 @@
 
 // Imports the parse function from jsy.lab1.Parser
 import jsy.lab2.Parser.parse
+import jsy.lab2.ast
 
 // Imports all of the functions form jsy.student.Lab2 (your implementations in Lab1.scala)
 import jsy.student.Lab2._
@@ -15,8 +16,13 @@ import jsy.student.Lab2._
 val negFourAST = parse("-4")
 
 // Evaluate that JavaScripty expression.
-//eval(negFourAST)
+eval(negFourAST)
+
+val x = ast.Var("11")
+toStr(x)
 
 // For convenience, we also have an eval function that takes a string,
 // which calls the parser and then delegates to your eval function.
 //eval("undefined + 1")
+//val num: Int = 11
+//val stringOutput = toStr(num)
