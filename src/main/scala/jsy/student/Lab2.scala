@@ -102,11 +102,64 @@ object Lab2 extends jsy.util.JsyApplication {
 
     e match {
       /* Base Cases */
+      case Unary(uop, e1) => uop match {
+//          Neg means to negate the number so we want a num back so we send toNumber our value and simply negate it
+        case Neg => N(-toNumber(eToVal(e1)))
+//          toBoolean returns a boolean value so we not it to get the not.
+        case Not => B(!toBoolean(e1))
+
+        case _ => throw new UnsupportedOperationException
+      }
+      case Binary(bop, e1, e2) => bop match {
+//      Plus can have multiple things in it so we need to convert?
+        case Plus => N(toNumber(eToVal(e1))+toNumber(eToVal(e2)))
+//          Simply Subtract
+        case Minus => N(toNumber(e1)-toNumber(e2))
+//          Multiply
+        case Times => N(toNumber(e1)*toNumber(e2))
+//          Divide
+        case Div => N(toNumber(e1)/toNumber(e2))
+//          Eq should return a Boolean
+        case Eq => B(eToVal(e1) == eToVal(e2))
+//          Ne should return a Boolean
+        case Ne => B(eToVal(e1) != eToVal(e2))
+//          Less Than will return a boolean based on two cases
+//          EZ PZZZZ
+        case Lt => B(toNumber(e1) < toNumber(e2))
+        case Le => B(toNumber(e1) <= toNumber(e2))
+        case Gt => B(toNumber(e1) > toNumber(e2))
+        case Ge => B(toNumber(e1) >= toNumber(e2))
+//
+        case And => (eToVal(e1), eToVal(e2)) match {
+//          case (S(_), S(_)) => ???
+//            for and we only have to look at the first value
+          case (N(_), B(_)) => N(toNumber(e1))
+          case (B(_), N(_)) => B(toBoolean(e1))
+          case ((_),(_)) => B(toBoolean(e1) && toBoolean(e2))
+        }
+        case Or => (eToVal(e1), eToVal(e2)) match {
+          case _ => ???
+        }
+
+        case Seq => ???
+
+        case _ => throw new UnsupportedOperationException
+
+      }
+
+
+
+
+
+
+
+
+
 
       /* Inductive Cases */
       case Print(e1) => println(pretty(eToVal(e1))); Undefined
 
-      case _ => ???
+      case _ => e
     }
   }
 
